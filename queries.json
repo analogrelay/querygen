@@ -1,0 +1,28 @@
+{
+    "areas": [
+        { "name": "SignalR", "label": "area-signalr" },
+        { "name": "WebSockets", "label": "area-websockets" },
+        { "name": "Servers", "label": "area-servers" },
+        { "name": "Installers", "label": "area-installers" },
+        { "name": "Hosting", "label": "area-hosting", "repos": ["aspnet/AspNetCore", "aspnet/Extensions"] },
+        { "name": "Middleware", "label": "area-middleware" },
+        { "name": "Azure", "label": "area-azure" }
+    ],
+    "queries": [
+        {
+            "name": "Triage",
+            "grouping": "area",
+            "queryText": "is:issue is:open sort:updated-desc no:milestone"
+        },
+        {
+            "name": "Waiting",
+            "grouping": "area",
+            "queryText": "is:issue is:open sort:updated-desc label:more-info-needed"
+        },
+        {
+            "name": "PRs",
+            "grouping": "area",
+            "queryText": "is:pr is:open sort:updated-desc"
+        }
+    ]
+}
