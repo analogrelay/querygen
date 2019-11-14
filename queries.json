@@ -6,7 +6,8 @@
         { "name": "Installers", "label": "area-installers" },
         { "name": "Hosting", "label": "area-hosting", "repos": ["aspnet/AspNetCore", "aspnet/Extensions"] },
         { "name": "Middleware", "label": "area-middleware" },
-        { "name": "Azure", "label": "area-azure" }
+        { "name": "Azure", "label": "area-azure" },
+        { "name": "Security", "label": "area-security" }
     ],
     "queries": [
         {
