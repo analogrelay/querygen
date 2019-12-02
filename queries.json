@@ -11,19 +11,24 @@
     ],
     "queries": [
         {
-            "name": "Triage",
+            "name": "Needs Attention",
             "grouping": "area",
-            "queryText": "is:issue is:open sort:updated-desc no:milestone"
+            "queryText": "is:issue is:open sort:updated-desc no:milestone label:\"Needs: Attention :wave:\""
         },
         {
-            "name": "Waiting",
+            "name": "Triage",
             "grouping": "area",
-            "queryText": "is:issue is:open sort:updated-desc label:more-info-needed"
+            "queryText": "is:issue is:open sort:updated-desc no:milestone -label:\"Needs: Author Feedback\""
         },
         {
             "name": "PRs",
             "grouping": "area",
             "queryText": "is:pr is:open sort:updated-desc"
+        },
+        {
+            "name": "Needs Author Feedback",
+            "grouping": "area",
+            "queryText": "is:issue is:open sort:updated-desc label:\"Needs: Author Feedback\""
         }
     ]
 }
