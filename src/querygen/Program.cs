@@ -24,7 +24,7 @@ namespace Internal.AspNetCore.QueryGenerator
             inputFile = inputFile ?? Path.Combine(Directory.GetCurrentDirectory(), "queries.json");
             outputFile = outputFile ?? Path.Combine(Directory.GetCurrentDirectory(), "Queries.md");
 
-            if(!File.Exists(inputFile))
+            if (!File.Exists(inputFile))
             {
                 Console.Error.WriteLine($"Could not find input file: {inputFile}");
                 return 1;
@@ -33,7 +33,7 @@ namespace Internal.AspNetCore.QueryGenerator
             // Load the input file
             Console.WriteLine($"Loading input data: {inputFile} ...");
             QueryList inputList;
-            using(var inputStream = File.OpenRead(inputFile))
+            using (var inputStream = File.OpenRead(inputFile))
             {
                 var options = new JsonSerializerOptions()
                 {
@@ -46,7 +46,7 @@ namespace Internal.AspNetCore.QueryGenerator
             // Generate queries
             Console.WriteLine("Computing queries...");
             var querySet = new QuerySet();
-            foreach(var queryDefinition in inputList.Queries)
+            foreach (var queryDefinition in inputList.Queries)
             {
                 GenerateQuery(queryDefinition, inputList, querySet);
             }
@@ -54,8 +54,8 @@ namespace Internal.AspNetCore.QueryGenerator
             // Generate the template
             Console.WriteLine($"Generating output file: {outputFile} ...");
             var stubble = new StubbleBuilder().Build();
-            using(var templateStream = typeof(Program).Assembly.GetManifestResourceStream("Internal.AspNetCore.QueryGenerator.Templates.querylist.mustache"))
-            using(var templateReader = new StreamReader(templateStream))
+            using (var templateStream = typeof(Program).Assembly.GetManifestResourceStream("Internal.AspNetCore.QueryGenerator.Templates.querylist.mustache"))
+            using (var templateReader = new StreamReader(templateStream))
             {
                 var template = await templateReader.ReadToEndAsync();
                 var output = await stubble.RenderAsync(template, querySet);
@@ -67,11 +67,16 @@ namespace Internal.AspNetCore.QueryGenerator
 
         private static void GenerateQuery(QueryDefinition queryDefinition, QueryList inputList, QuerySet querySet)
         {
-            if(queryDefinition.Grouping == QueryGrouping.Area)
+            if (queryDefinition.Grouping == QueryGrouping.Area)
             {
-                foreach(var area in inputList.Areas)
+                foreach (var area in inputList.Areas)
                 {
-                    GenerateAreaQuery(queryDefinition, area, querySet);
+                    var areaQueries = querySet.EnsureArea(area.Name);
+                    // Filter by 'queries' if present.
+                    if (area.Queries.Count == 0 || area.Queries.Any(q => string.Equals(q, queryDefinition.Name)))
+                    {
+                        areaQueries.Queries.Add(GenerateAreaQuery(queryDefinition, area));
+                    }
                 }
             }
             else
@@ -80,12 +85,12 @@ namespace Internal.AspNetCore.QueryGenerator
             }
         }
 
-        private static void GenerateAreaQuery(QueryDefinition queryDefinition, QueryArea area, QuerySet querySet)
+        private static GitHubQuery GenerateAreaQuery(QueryDefinition queryDefinition, QueryArea area)
         {
             string baseUrl;
             string areaFilter;
 
-            if(area.Repositories.Count > 1)
+            if (area.Repositories.Count > 1)
             {
                 baseUrl = "https://github.com/search?q=";
                 areaFilter = string.Join(" ", area.Repositories.Select(r => $"repo:{r}")) + " ";
@@ -98,8 +103,7 @@ namespace Internal.AspNetCore.QueryGenerator
 
             areaFilter += $"label:{area.Label}";
 
-            var query = GitHubQuery.Create(queryDefinition.Name, baseUrl, $"{queryDefinition.QueryText} {areaFilter}");
-            querySet.AddAreaQuery(area.Name, query);
+            return GitHubQuery.Create(queryDefinition.Name, baseUrl, $"{queryDefinition.QueryText} {areaFilter}");
         }
     }
 }
