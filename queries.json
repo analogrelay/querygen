@@ -1,32 +1,44 @@
 {
     "areas": [
-        { "name": "gRPC", "repos": ["grpc/grpc-dotnet"], "queries": [ "Triage", "PRs" ] },
-        { "name": "SignalR", "label": "area-signalr" },
-        { "name": "WebSockets", "label": "area-websockets" },
-        { "name": "Servers", "label": "area-servers" },
-        { "name": "Installers", "label": "area-installers" },
-        { "name": "Hosting", "label": "area-hosting", "repos": ["dotnet/aspnetcore", "dotnet/extensions"] },
-        { "name": "Middleware", "label": "area-middleware" },
-        { "name": "Azure", "label": "area-azure" },
-        { "name": "Security", "label": "area-security" }
+        { "name": "gRPC", "repos": ["grpc/grpc-dotnet"], "queries": [ "all-triage", "prs" ] },
+        { "name": "ASP.NET SignalR", "repos": ["SignalR/SignalR"], "queries": [ "triage", "prs" ] },
+
+        { "name": "SignalR", "label": "area-signalr", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
+        { "name": "WebSockets", "label": "area-websockets", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
+        { "name": "Servers", "label": "area-servers", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
+        { "name": "Installers", "label": "area-installers", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
+        { "name": "Hosting", "label": "area-hosting", "repos": ["dotnet/aspnetcore", "dotnet/extensions"], "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
+        { "name": "Middleware", "label": "area-middleware", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
+        { "name": "Azure", "label": "area-azure", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
+        { "name": "Security", "label": "area-security", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] }
     ],
     "queries": [
         {
+            "id": "needs-attention",
             "name": "Needs Attention",
             "grouping": "area",
             "queryText": "is:issue is:open sort:updated-desc no:milestone label:\"Needs: Attention :wave:\""
         },
         {
+            "id": "all-triage",
+            "name": "Triage",
+            "grouping": "area",
+            "queryText": "is:issue is:open sort:updated-desc no:milestone"
+        },
+        {
+            "id": "triage",
             "name": "Triage",
             "grouping": "area",
             "queryText": "is:issue is:open sort:updated-desc no:milestone -label:\"Needs: Author Feedback\""
         },
         {
+            "id": "prs",
             "name": "PRs",
             "grouping": "area",
             "queryText": "is:pr is:open sort:updated-desc"
         },
         {
+            "id": "needs-author-feedback",
             "name": "Needs Author Feedback",
             "grouping": "area",
             "queryText": "is:issue is:open sort:updated-desc label:\"Needs: Author Feedback\""

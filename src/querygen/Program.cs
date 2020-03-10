@@ -73,7 +73,7 @@ namespace Internal.AspNetCore.QueryGenerator
                 {
                     var areaQueries = querySet.EnsureArea(area.Name);
                     // Filter by 'queries' if present.
-                    if (area.Queries.Count == 0 || area.Queries.Any(q => string.Equals(q, queryDefinition.Name)))
+                    if (area.Queries.Any(q => string.Equals(q, queryDefinition.Id)))
                     {
                         areaQueries.Queries.Add(GenerateAreaQuery(queryDefinition, area));
                     }
@@ -101,7 +101,10 @@ namespace Internal.AspNetCore.QueryGenerator
                 areaFilter = "";
             }
 
-            areaFilter += $"label:{area.Label}";
+            if (!string.IsNullOrEmpty(area.Label))
+            {
+                areaFilter += $"label:{area.Label}";
+            }
 
             return GitHubQuery.Create(queryDefinition.Name, baseUrl, $"{queryDefinition.QueryText} {areaFilter}");
         }

@@ -2,6 +2,7 @@
 {
     internal class QueryDefinition
     {
+        public string Id { get; set; }
         public string Name { get; set; }
         public QueryGrouping Grouping { get; set; } = QueryGrouping.None;
         public string QueryText { get; set; }
