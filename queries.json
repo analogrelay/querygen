@@ -6,7 +6,7 @@
         { "name": "WebSockets", "label": "area-websockets", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
         { "name": "Servers", "label": "area-servers", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
         { "name": "Installers", "label": "area-installers", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
-        { "name": "Hosting", "label": "area-hosting", "repos": ["dotnet/aspnetcore", "dotnet/extensions"], "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
+        { "name": "Hosting", "label": "area-hosting", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
         { "name": "Middleware", "label": "area-middleware", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
         { "name": "Azure", "label": "area-azure", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
         { "name": "Security", "label": "area-security", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
