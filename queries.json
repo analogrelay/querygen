@@ -1,19 +1,26 @@
 {
     "areas": [
         { "name": "gRPC", "repos": ["grpc/grpc-dotnet"], "queries": [ "all-triage", "prs" ] },
-        { "name": "SignalR", "label": "area-signalr", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
-        { "name": "WebSockets", "label": "area-websockets", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
-        { "name": "Servers", "label": "area-servers", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
-        { "name": "Installers", "label": "area-installers", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
-        { "name": "Hosting", "label": "area-hosting", "repos": ["dotnet/aspnetcore", "dotnet/extensions"], "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
-        { "name": "Middleware", "label": "area-middleware", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
-        { "name": "Azure", "label": "area-azure", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
-        { "name": "Security", "label": "area-security", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback"] },
+
+        { "name": "SignalR", "label": "area-signalr", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
+        { "name": "WebSockets", "label": "area-websockets", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
+        { "name": "Servers", "label": "area-servers", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
+        { "name": "Installers", "label": "area-installers", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
+        { "name": "Hosting", "label": "area-hosting", "repos": ["dotnet/aspnetcore", "dotnet/extensions"], "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
+        { "name": "Middleware", "label": "area-middleware", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
+        { "name": "Azure", "label": "area-azure", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
+        { "name": "Security", "label": "area-security", "queries": ["needs-attention", "triage", "prs", "needs-author-feedback", "next-sprint-planning" ] },
 
         { "name": "ASP.NET SignalR", "repos": ["SignalR/SignalR"], "queries": [ "triage", "prs" ] },
         { "name": "ASP.NET Katana", "repos": ["aspnet/AspNetKatana"], "queries": [ "all-triage", "prs" ] }
     ],
     "queries": [
+        {
+            "id": "next-sprint-planning",
+            "name": "Next Sprint Planning",
+            "grouping": "area",
+            "queryText": "is:issue is:open sort:updated-desc milestone:\"Next sprint planning\""
+        },
         {
             "id": "needs-attention",
             "name": "Needs Attention",
